@@ -1,0 +1,30 @@
+
+-- OpenWRT: Arduino serial device /dev/ttyACM0 over TCP port 2000
+vi /etc/ser2net.conf
+
+# Put this line at the end of file
+2000:raw:0:/dev/ttyACM0:9600 NONE 1STOPBIT 8DATABITS XONXOFF LOCAL -RTSCTS
+
+-- OpenWRT: Running ser2net using monitor port 3000 for debugging
+ser2net -c /etc/ser2net.conf -p 3000
+telnet localhost 3000
+->showport
+->monitor term 2000
+->monior stop
+->monitor tcp 2000
+->monitor stop
+->quit
+
+-- OpenWRT: To start ser2net on reboot modify /etc/rc.local
+# Put your custom commands here that should be executed once
+# the system init finished. By default this file does nothing.
+
+ser2net -c /etc/ser2net.conf
+/heater/start.sh &
+
+exit 0
+
+-- OpenWRT: Deploy the HTML
+mkdir /www/heater
+cp /heater/page.lua /www/heater
+
