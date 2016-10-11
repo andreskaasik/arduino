@@ -24,7 +24,7 @@ local function main()
     GPRINT:probe1:MAX:"Max %2.1lf C" \
     GPRINT:probe1:MIN:"Min %2.1lf C" \
     GPRINT:probe1:AVERAGE:"Avg %2.1lf C" \
-    > heat.tmp
+    | grep IMG > heat.tmp
     ]])
 
   for line in io.lines("/www/heater/heat.tmp") do 
@@ -49,7 +49,7 @@ local function main()
     GPRINT:probe1:MAX:"Max %2.1lf C" \
     GPRINT:probe1:MIN:"Min %2.1lf C" \
     GPRINT:probe1:AVERAGE:"Avg %2.1lf C" \
-    > heat.tmp
+    | grep IMG > heat.tmp
     ]])
 
   for line in io.lines("/www/heater/heat.tmp") do 
@@ -74,7 +74,7 @@ local function main()
     GPRINT:probe1:MAX:"Max %2.1lf C" \
     GPRINT:probe1:MIN:"Min %2.1lf C" \
     GPRINT:probe1:AVERAGE:"Avg %2.1lf C" \
-    > heat.tmp
+    | grep IMG > heat.tmp
     ]])
 
   for line in io.lines("/www/heater/heat.tmp") do 
